@@ -9,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.Max;
 
 @Entity
 @Table(name="products")
@@ -19,7 +18,7 @@ public class Product {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Max(value = 20)
+	/*@Max(value = 20)*/
 	@Column(nullable = false)
 	private String name;
 	

@@ -15,7 +15,7 @@
         <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Merriweather:300,400" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="css/css_reset.css">
-        <link rel="stylesheet" type="text/css" href="<c:url value="css/style.css" />" >
+        <link rel="stylesheet" type="text/css" href="css/style.css">
     </head>
     <body>
         
@@ -50,72 +50,66 @@
         </header>
 
         <div class="blog, buttons">
-            <button>Dodaj  nowy</button>
+        	<a href="/CraftArtis/add"><button>Dodaj nowy</button></a>   
         </div>
         
-        <!--********* NEWS **********************************************-->
+         <!--********* NEWS **********************************************-->
         <section class="blog" id="news">
             <div class="post">
                 <h2>&gt;&gt;&gt;&nbsp;NOWOŚCI&nbsp;&lt;&lt;&lt;</h2>
-
-                <strong class="title">Jakaś nazwa</strong>
-                <div class="images">
-                    <div class="image-container">
-                        <img src="img/bee1.jpg" />
-                    </div>
-                    <div class="image-container">
-                        <img src="img/bee2.jpg" />
-                    </div>
-                </div>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras a tincidunt magna. Morbi ac ultricies mi, at condimentum nisl. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-                </p>
-                <div class="buttons">
-                    <button>Edytuj</button>
-                    <button>Usuń</button>
-                </div>
-
-                <strong class="title">Inna nazwa</strong>
-                <div class="images">
-                    <div class="image-container">
-                        <img src="img/turtle1.jpg" />
-                    </div>
-                </div>
-                <p>
-                    Sed viverra sit amet risus a eleifend. Donec sed dui ac mauris porta tempor vel non nunc. Duis tincidunt accumsan lectus, et maximus libero luctus in. Fusce consequat nisi non tincidunt interdum. Aliquam eget libero vel nunc tincidunt vestibulum eu et velit.
-                </p>
-                <div class="buttons">
-                    <button>Edytuj</button>
-                    <button>Usuń</button>
-                </div>
+                
+                <c:forEach var="n" items="${news}">
+                	<strong class="title">${n.name}</strong>
+                	
+                	<div class="images">
+                   		<div class="image-container">
+                        	<img src="img/bee1.jpg" />
+                   	 	</div>
+                   	 	<div class="image-container">
+                        	<img src="img/bee2.jpg" />
+                   	 	</div>
+               	    </div>
+               	    
+               	    <p>${n.description}</p>
+               	    
+               	    <div class="buttons">
+               	    	<a href="<c:url value="/edit/${n.id}"/>"><button>Edytuj</button></a>
+               	    	<a href="<c:url value="/delete/${n.id}"/>"><button>Usuń</button></a>
+                	</div>
+                </c:forEach>
 
             </div>
         </section>
+        
+        
 
         <!--********* CLOTHES **********************************************-->
         <section class="blog" id="clothes">
             <div class="post">
                 <h2>&gt;&gt;&gt;&nbsp;UBRANIA&nbsp;&lt;&lt;&lt;</h2>
 
-                <strong class="title">Jakaś nazwa</strong>
-                <div class="images">
-                    <div class="image-container">
-                        <img src="img/pillow_front.jpg" />
-                    </div>
-                    <div class="image-container">
-                        <img src="img/bee1.jpg" />
-                    </div>
-                    <div class="image-container">
-                        <img src="img/pillow_back.jpg" />
-                    </div>
-                </div>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras a tincidunt magna. Morbi ac ultricies mi, at condimentum nisl. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-                </p>
-                <div class="buttons">
-                    <button>Edytuj</button>
-                    <button>Usuń</button>
-                </div>
+                <c:forEach var="c" items="${clothes}">
+                	<strong class="title">${c.name}</strong>
+                	
+                	<div class="images">
+                   		<div class="image-container">
+                        	<img src="img/bee1.jpg" />
+                   	 	</div>
+                   	 	<div class="image-container">
+                        	<img src="img/bee2.jpg" />
+                   	 	</div>
+                   	 	<div class="image-container">
+                        	<img src="img/bee2.jpg" />
+                   	 	</div>
+               	    </div>
+               	    
+               	    <p>${c.description}</p>
+               	    
+               	    <div class="buttons">
+						<a href="<c:url value="/edit/${c.id}"/>"><button>Edytuj</button></a>
+               	    	<a href="<c:url value="/delete/${c.id}"/>"><button>Usuń</button></a>
+                	</div>
+                </c:forEach>
 
             </div>
         </section>
@@ -125,25 +119,22 @@
             <div class="post">
                 <h2>&gt;&gt;&gt;&nbsp;DODATKI&nbsp;&lt;&lt;&lt;</h2>
 
-                <strong class="title">Jakaś nazwa</strong>
-                <div class="images">
-                    <div class="image-container">
-                        <img src="img/pillow_front.jpg" />
-                    </div>
-                    <div class="image-container">
-                        <img src="img/bee1.jpg" />
-                    </div>
-                    <div class="image-container">
-                        <img src="img/pillow_back.jpg" />
-                    </div>
-                </div>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras a tincidunt magna. Morbi ac ultricies mi, at condimentum nisl. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-                </p>
-                <div class="buttons">
-                    <button>Edytuj</button>
-                    <button>Usuń</button>
-                </div>
+                <c:forEach var="accessory" items="${accessories}">
+                	<strong class="title">${accessory.name}</strong>
+                	
+                	<div class="images">
+                   		<div class="image-container">
+                        	<img src="img/bee1.jpg" />
+                   	 	</div>
+               	    </div>
+               	    
+               	    <p>${accessory.description}</p>
+               	    
+               	    <div class="buttons">
+               	    	<a href="<c:url value="/edit/${accessory.id}"/>"><button>Edytuj</button></a>
+               	    	<a href="<c:url value="/delete/${accessory.id}"/>"><button>Usuń</button></a>
+                	</div>
+                </c:forEach>
 
             </div>
         </section>
@@ -153,25 +144,25 @@
             <div class="post">
                 <h2>&gt;&gt;&gt;&nbsp;ZABAWKI&nbsp;&lt;&lt;&lt;</h2>
 
-                <strong class="title">Jakaś nazwa</strong>
-                <div class="images">
-                    <div class="image-container">
-                        <img src="img/pillow_front.jpg" />
-                    </div>
-                    <div class="image-container">
-                        <img src="img/bee1.jpg" />
-                    </div>
-                    <div class="image-container">
-                        <img src="img/pillow_back.jpg" />
-                    </div>
-                </div>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras a tincidunt magna. Morbi ac ultricies mi, at condimentum nisl. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-                </p>
-                <div class="buttons">
-                    <button>Edytuj</button>
-                    <button>Usuń</button>
-                </div>
+                <c:forEach var="toy" items="${toys}">
+                	<strong class="title">${toy.name}</strong>
+                	
+                	<div class="images">
+                   		<div class="image-container">
+                        	<img src="img/bee1.jpg" />
+                   	 	</div>
+                   	 	<div class="image-container">
+                        	<img src="img/bee2.jpg" />
+                   	 	</div>
+               	    </div>
+               	    
+               	    <p>${toy.description}</p>
+               	    
+               	    <div class="buttons">
+               	    	<a href="<c:url value="/edit/${toy.id}"/>"><button>Edytuj</button></a>
+               	    	<a href="<c:url value="/delete/${toy.id}"/>"><button>Usuń</button></a>
+                	</div>
+                </c:forEach>
 
             </div>
         </section>
@@ -181,25 +172,25 @@
             <div class="post">
                 <h2>&gt;&gt;&gt;&nbsp;INNE&nbsp;&lt;&lt;&lt;</h2>
 
-                <strong class="title">Jakaś nazwa</strong>
-                <div class="images">
-                    <div class="image-container">
-                        <img src="img/pillow_front.jpg" />
-                    </div>
-                    <div class="image-container">
-                        <img src="img/bee1.jpg" />
-                    </div>
-                    <div class="image-container">
-                        <img src="img/pillow_back.jpg" />
-                    </div>
-                </div>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras a tincidunt magna. Morbi ac ultricies mi, at condimentum nisl. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-                </p>
-                <div class="buttons">
-                    <button>Edytuj</button>
-                    <button>Usuń</button>
-                </div>
+                <c:forEach var="other" items="${others}">
+                	<strong class="title">${other.name}</strong>
+                	
+                	<div class="images">
+                   		<div class="image-container">
+                        	<img src="img/bee1.jpg" />
+                   	 	</div>
+                   	 	<div class="image-container">
+                        	<img src="img/bee2.jpg" />
+                   	 	</div>
+               	    </div>
+               	    
+               	    <p>${other.description}</p>
+               	    
+               	    <div class="buttons">
+               	    	<a href="<c:url value="/edit/${other.id}"/>"><button>Edytuj</button></a>
+               	    	<a href="<c:url value="/delete/${other.id}"/>"><button>Usuń</button></a>
+                	</div>
+                </c:forEach>
 
             </div>
         </section>

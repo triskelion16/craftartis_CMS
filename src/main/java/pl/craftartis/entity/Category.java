@@ -20,7 +20,7 @@ public class Category {
 	private Long id;
 	
 	@Column(nullable = false)
-	@Max(value = 20)
+	@Max(value = 30)
 	private String name;
 
 	@OneToMany(mappedBy	= "category")
