@@ -38,7 +38,7 @@ public class ProductController {
 	/***** Index *******************************/
 	@GetMapping("/index")
 	public String homePage(Model model) {
-		model.addAttribute("news", productRepository.findAllByCategoryId(1L));
+		model.addAttribute("news", productRepository.findAllByCategoryIdOrderByCreated(1L));
 		model.addAttribute("clothes", productRepository.findAllByCategoryId(2L));
 		model.addAttribute("accessories", productRepository.findAllByCategoryId(3L));
 		model.addAttribute("toys", productRepository.findAllByCategoryId(4L));
@@ -63,11 +63,6 @@ public class ProductController {
 	@GetMapping("/edit/{id}")
 	public String editGet(@PathVariable Long id, Model model) {
 		model.addAttribute("products", productRepository.findOne(id));
-//		model.addAttribute("news", productRepository.findOne(id));
-//		model.addAttribute("clothes", productRepository.findOne(id));
-//		model.addAttribute("accessories", productRepository.findOne(id));
-//		model.addAttribute("toys", productRepository.findOne(id));
-//		model.addAttribute("others", productRepository.findOne(id));
 		return "add";
 	}
 	
