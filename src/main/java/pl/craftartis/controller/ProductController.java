@@ -13,36 +13,36 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import pl.craftartis.entity.Category;
 import pl.craftartis.entity.Product;
-import pl.craftartis.repository.CategoryRepository;
-import pl.craftartis.repository.ProductRepository;
+import pl.craftartis.service.CategoryService;
+import pl.craftartis.service.ProductService;
 
 @Controller
 @RequestMapping("/")
 public class ProductController {
 	
-	private ProductRepository productRepository;
-	private CategoryRepository categoryRepository;
+	private ProductService productService;
+	private CategoryService categoryService;
 
 	@Autowired
-	public ProductController(ProductRepository productRepository, CategoryRepository categoryRepository) {
-		this.productRepository = productRepository;
-		this.categoryRepository = categoryRepository;
+	public ProductController(ProductService productService, CategoryService categoryService) {
+		this.productService = productService;
+		this.categoryService = categoryService;
 	}
 	
 	
 	@ModelAttribute("categories")
 	public List<Category> getCategories() {
-		return categoryRepository.findAll();
+		return categoryService.getCategories();
 	}
 
 	/***** Index *******************************/
 	@GetMapping("/index")
 	public String homePage(Model model) {
-		model.addAttribute("news", productRepository.findAllByCategoryIdOrderByCreated(1L));
-		model.addAttribute("clothes", productRepository.findAllByCategoryId(2L));
-		model.addAttribute("accessories", productRepository.findAllByCategoryId(3L));
-		model.addAttribute("toys", productRepository.findAllByCategoryId(4L));
-		model.addAttribute("others", productRepository.findAllByCategoryId(5L));
+		model.addAttribute("news", productService.getProductsByCategoryId(1L));
+		model.addAttribute("clothes", productService.getProductsByCategoryId(2L));
+		model.addAttribute("accessories", productService.getProductsByCategoryId(3L));
+		model.addAttribute("toys", productService.getProductsByCategoryId(4L));
+		model.addAttribute("others", productService.getProductsByCategoryId(5L));
 		return "index";
 	}
 
@@ -55,27 +55,27 @@ public class ProductController {
 	
 	@PostMapping("/add")
 	public String addPost(@ModelAttribute Product product) {
-		productRepository.save(product);
+		productService.saveToDB(product);
 		return "redirect:/index";
 	}
 	
 	/***** EDIT *******************************/
 	@GetMapping("/edit/{id}")
 	public String editGet(@PathVariable Long id, Model model) {
-		model.addAttribute("products", productRepository.findOne(id));
+		model.addAttribute("products", productService.getProductById(id));
 		return "add";
 	}
 	
 	@PostMapping("/edit/{id}")
 	public String editPost(@ModelAttribute Product product) {
-		productRepository.save(product);
+		productService.saveToDB(product);
 		return "redirect:/index";
 	}
 	
 	/***** DELETE *******************************/
 	@GetMapping("/delete/{id}")
 	public String delete(@PathVariable Long id) {
-		productRepository.delete(id);
+		productService.deleteFromDB(id);
 		return "redirect:/index";
 	}
 	
