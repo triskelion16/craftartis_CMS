@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name="products")
@@ -29,11 +30,26 @@ public class Product {
 	@ManyToOne
 	private Category category;
 	
+	@Column(columnDefinition = "mediumtext")
 	private String jpg1;
+	@Column(columnDefinition = "mediumtext")
 	private String jpg2;
+	@Column(columnDefinition = "mediumtext")
 	private String jpg3;
 	
+	@Transient
+	private byte[] jpg1File;
 	
+	
+	public byte[] getJpg1File() {
+		return jpg1File;
+	}
+
+	public void setJpg1File(byte[] jpg1File) {
+		this.jpg1File = jpg1File;
+	}
+	
+
 	public Product() {}
 	
 	public Product(Long id, String name, String description, Date created, Category category, String jpg1, String jpg2,

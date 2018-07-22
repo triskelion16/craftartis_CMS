@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
 <!DOCTYPE html>
 <html lang="pl-PL">
@@ -14,8 +15,9 @@
         
         <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Merriweather:300,400" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="css/css_reset.css">
-        <link rel="stylesheet" type="text/css" href="css/style.css">
+        
+        <link href='<spring:url value="/resources/css/css_reset.css"/>' rel="stylesheet" />
+		<link href='<spring:url value="/resources/css/style.css"/>' rel="stylesheet" />
     </head>
     <body>
         
@@ -49,7 +51,7 @@
             </div>
         </header>
 
-        <div class="blog, buttons">
+        <div class="blog post buttons">
         	<a href="/CraftArtis/add"><button>Dodaj nowy</button></a>   
         </div>
         
@@ -62,12 +64,23 @@
                 	<strong class="title">${n.name}</strong>
                 	
                 	<div class="images">
-                   		<div class="image-container">
-                        	<img src="img/bee1.jpg" />
-                   	 	</div>
-                   	 	<div class="image-container">
-                        	<img src="img/bee2.jpg" />
-                   	 	</div>
+                		<c:if test="${n.jpg1 != null}">
+	                   		<div class="image-container">
+	                   			<img src="data:image/jpg;base64,${n.jpg1}" />
+	                   	 	</div>
+	                   	 </c:if>
+	                   	 
+	                   	 <c:if test="${n.jpg2 != null}">
+	                   	 	<div class="image-container">
+	                   			<img src="data:image/jpg;base64,${n.jpg2}" />
+	                   	 	</div>
+                   	 	</c:if>
+                   	 	
+                   	 	<c:if test="${n.jpg3 != null}">
+	                   	 	<div class="image-container">
+	                   			<img src="data:image/jpg;base64,${n.jpg3}" />
+	                   	 	</div>
+                   	 	</c:if>
                	    </div>
                	    
                	    <p>${n.description}</p>

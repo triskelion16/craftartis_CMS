@@ -3,6 +3,7 @@ package pl.craftartis.app;
 import java.util.Locale;
 
 import javax.persistence.EntityManagerFactory;
+import javax.servlet.MultipartConfigElement;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -29,6 +30,20 @@ import org.springframework.web.servlet.view.JstlView;
 @EnableJpaRepositories(basePackages	= "pl.craftartis.repository")
 @EnableTransactionManagement
 public class AppConfig extends WebMvcConfigurerAdapter {
+	
+	@Bean
+    public MultipartConfigElement multipartConfigElement() {
+        return new MultipartConfigElement("");
+    }
+
+//    @Bean
+//    public MultipartResolver multipartResolver() {
+//        org.springframework.web.multipart.commons.CommonsMultipartResolver multipartResolver = new org.springframework.web.multipart.commons.CommonsMultipartResolver();
+//        multipartResolver.setMaxUploadSize(1000000);
+//        return multipartResolver;
+//    }
+	
+    
 
 	@Override
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
@@ -59,10 +74,12 @@ public class AppConfig extends WebMvcConfigurerAdapter {
     
     
 
-//	@Override
-//	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-//		registry.addResourceHandler("/css/**").addResourceLocations("/css/");//.resourceChain(true);
-//	}
+	@Override
+	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+		registry
+			.addResourceHandler("/resources/**")
+			.addResourceLocations("/static/");//.resourceChain(true);
+	}
     
 
 	@Bean(name = "localeResolver")

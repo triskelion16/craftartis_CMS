@@ -71,14 +71,13 @@
 				</label>
 			</div>
 			
-			<!--  >div class="form-group">
+			<div class="form-group">
 				<label> Obraz 2: 
-					<form:input type="file" id="fiad2" class="form-control" path="jpg2" accept=".jpg"/>
+					<form:input id="jpg2" class="form-control" path="jpg2"/>
 				</label>
-					<img src="" width="75" style="display:none;" />
 			</div>
 			
-			<div class="form-group">
+			<!--  >div class="form-group">
 				<label> Obraz 3: 
 					<form:input type="file" id="fiad3" class="form-control" path="jpg3" accept=".jpg"/>
 				</label>

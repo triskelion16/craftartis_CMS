@@ -55,7 +55,7 @@ public class ProductController {
 	
 	@PostMapping("/add")
 	public String addPost(@ModelAttribute Product product) {
-		productService.saveToDB(product);
+		productService.addToDB(product);
 		return "redirect:/index";
 	}
 	
@@ -68,7 +68,7 @@ public class ProductController {
 	
 	@PostMapping("/edit/{id}")
 	public String editPost(@ModelAttribute Product product) {
-		productService.saveToDB(product);
+		productService.editDB(product);
 		return "redirect:/index";
 	}
 	
